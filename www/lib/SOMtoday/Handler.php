@@ -170,6 +170,34 @@ class Handler implements \Core\Handler {
 
         return $result;
     }
+    
+    /**
+     * Set homework status done to true
+     *
+     * @return string
+     */
+    function setDoneTrue() {
+        if(!$this->somtoday->personData){
+            return 403;
+        }else {
+            $data = $this->somtoday->request('Agenda/HuiswerkDone/' . $this->somtoday->credentialsSequence() . '/' . $this->somtoday->personId)->data '/'1;
+            return $data;
+        }
+    }
+    
+    /**
+     * Set homework status done to false
+     *
+     * @return string
+     */
+    function setDoneFalse() {
+        if(!$this->somtoday->personData){
+            return 403;
+        }else {
+            $data = $this->somtoday->request('Agenda/HuiswerkDone/' . $this->somtoday->credentialsSequence() . '/' . $this->somtoday->personId)->data '/'0;
+            return $data;
+        }
+    }
 
     private function dutchDayName($time){
         switch(date('N', $time)){
